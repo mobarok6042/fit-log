@@ -1,8 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { SlCalender } from "react-icons/sl";
-import { CiBookmark } from "react-icons/ci";
+import WorkoutActions from "../../components/WorkoutActions";
 
 const WorkoutDetailPage = async ({ params }) => {
   const { workoutid } = await params;
@@ -87,16 +86,7 @@ const WorkoutDetailPage = async ({ params }) => {
             </div>
           ))}
         </div>
-        <div className="">
-          <button className="btn bg-[#C2F800] m-4">
-            <SlCalender />
-            Add To Todays Plan
-          </button>
-          <button className="btn m-4">
-            <CiBookmark />
-            Save For Later
-          </button>
-        </div>
+        <WorkoutActions workout={workout} />
       </div>
     </main>
   );

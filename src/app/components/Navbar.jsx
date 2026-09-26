@@ -6,10 +6,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiBookmark, FiList, FiMenu } from "react-icons/fi";
+import {
+  COLLECTIONS_UPDATED_EVENT,
+  readWorkoutCollection,
+} from "../lib/workoutCollections";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [hash, setHash] = React.useState("");
+  const [counts, setCounts] = React.useState({ plan: 0, saved: 0 });
 
   React.useEffect(() => {
     const updateHash = () => setHash(window.location.hash);
@@ -18,6 +23,23 @@ const Navbar = () => {
 
     return () => window.removeEventListener("hashchange", updateHash);
   }, [pathname]);
+
+  React.useEffect(() => {
+    const updateCounts = () => {
+      setCounts({
+        plan: readWorkoutCollection("plan").length,
+        saved: readWorkoutCollection("saved").length,
+      });
+    };
+
+    updateCounts();
+    window.addEventListener(COLLECTIONS_UPDATED_EVENT, updateCounts);
+    window.addEventListener("storage", updateCounts);
+    return () => {
+      window.removeEventListener(COLLECTIONS_UPDATED_EVENT, updateCounts);
+      window.removeEventListener("storage", updateCounts);
+    };
+  }, []);
 
   const links = (
     <>
@@ -79,15 +101,15 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end gap-1 sm:gap-3">
-        <Link href="/myplans" aria-label="Plan" title="Plan" className="btn btn-ghost btn-sm gap-1 px-2 sm:px-3">
+        <Link href="/myplans?view=plan" aria-label="Plan" title="Plan" className="btn btn-ghost btn-sm gap-1 px-2 sm:px-3">
           <FiList aria-hidden="true" size={17} />
           <span className="hidden sm:inline">Plan</span>
-          <span className="badge badge-xs bg-[#C2F800]">0</span>
+          <span className="badge badge-xs bg-[#C2F800] text-black">{counts.plan}</span>
         </Link>
-        <Link href="/myplans" aria-label="Saved" title="Saved" className="btn btn-ghost btn-sm gap-1 px-2 sm:px-3">
+        <Link href="/myplans?view=saved" aria-label="Saved" title="Saved" className="btn btn-ghost btn-sm gap-1 px-2 sm:px-3">
           <FiBookmark aria-hidden="true" size={17} />
           <span className="hidden sm:inline">Saved</span>
-          <span className="badge badge-xs">0</span>
+          <span className="badge badge-xs">{counts.saved}</span>
         </Link>
       </div>
     </div>
