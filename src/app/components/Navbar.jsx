@@ -5,20 +5,31 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FiBookmark, FiList, FiMenu } from "react-icons/fi";
 
 const Navbar = () => {
-    const pathname = usePathname();
+  const pathname = usePathname();
+  const [hash, setHash] = React.useState("");
+
+  React.useEffect(() => {
+    const updateHash = () => setHash(window.location.hash);
+    updateHash();
+    window.addEventListener("hashchange", updateHash);
+
+    return () => window.removeEventListener("hashchange", updateHash);
+  }, [pathname]);
+
   const links = (
     <>
       <li>
-        <Link href="/workouts" 
-        className={pathname === "/workouts" ? "text-[#C2F800] bg-[#1A2312] rounded-2xl font-bold" : ""}
+        <Link href="/#workouts" 
+        className={pathname === "/workouts" || (pathname === "/" && hash === "#workouts") ? "text-[#C2F800] bg-[#1A2312] rounded-2xl font-bold" : "rounded-2xl"}
         >
         Workouts</Link>
       </li>
       <li>
         <Link href="/myplans"
-         className={pathname === "/myplans" ? "text-[#C2F800] bg-[#1A2312] rounded-2xl font-bold" : ""}
+         className={pathname === "/myplans" ? "text-[#C2F800] bg-[#1A2312] rounded-2xl font-bold" : "rounded-2xl"}
         >
         My Plans</Link>
       </li>
@@ -26,17 +37,20 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-sm px-10">
+    <div className="navbar sticky top-0 z-50 gap-1 bg-base-100 px-2 shadow-sm sm:gap-2 sm:px-4 lg:px-10">
       <div className="navbar-start">
         <div className="dropdown">
           <div
             tabIndex={0}
             role="button"
-            className="btn btn-ghost lg:hidden"
-          ></div>
+            aria-label="Open navigation menu"
+            className="btn btn-ghost btn-sm px-2 lg:hidden"
+          >
+            <FiMenu aria-hidden="true" size={20} />
+          </div>
           <ul
             tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-3xl z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-3xl z-1 mt-3 w-52 p-2 gap-4 shadow"
           >
             {/* links here */}
             {links}
@@ -64,16 +78,16 @@ const Navbar = () => {
           {links}
         </ul>
       </div>
-      <div className="navbar-end gap-4">
-        <Link href="/myplans">
-          <button className="btn">
-            Plan <div className="badge badge-sm bg-[#C2F800]">0</div>
-          </button>
+      <div className="navbar-end gap-1 sm:gap-3">
+        <Link href="/myplans" aria-label="Plan" title="Plan" className="btn btn-ghost btn-sm gap-1 px-2 sm:px-3">
+          <FiList aria-hidden="true" size={17} />
+          <span className="hidden sm:inline">Plan</span>
+          <span className="badge badge-xs bg-[#C2F800]">0</span>
         </Link>
-        <Link href="/myplans">
-          <button className="btn">
-            Saved <div className="badge badge-sm">0</div>
-          </button>
+        <Link href="/myplans" aria-label="Saved" title="Saved" className="btn btn-ghost btn-sm gap-1 px-2 sm:px-3">
+          <FiBookmark aria-hidden="true" size={17} />
+          <span className="hidden sm:inline">Saved</span>
+          <span className="badge badge-xs">0</span>
         </Link>
       </div>
     </div>

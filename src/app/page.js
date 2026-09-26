@@ -9,10 +9,18 @@ export default async function Home() {
     <div className="">
       <main className="">
         <Banner />
-        <section className="mx-auto grid grid-cols-1 justify-center gap-4 px-4 py-8 md:grid-cols-2 lg:grid-cols-3 lg:px-10">
-          {workouts.map((workout) => (
-            <WorkoutCard key={workout.id} workout={workout} />
-          ))}
+        <section id="workouts" className="mx-auto w-full max-w-7xl scroll-mt-20 px-4 py-8 lg:px-10">
+          <header className="mb-6 space-y-1 text-base-content">
+            <h2 className="text-3xl font-bold">The Library</h2>
+            <p className="text-sm opacity-70">
+              Twelve lifts covering every muscle group.
+            </p>
+          </header>
+          <div className="grid grid-cols-1 justify-center gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {workouts.map((workout) => (
+              <WorkoutCard key={workout.id} workout={workout} />
+            ))}
+          </div>
         </section>
       </main>
     </div>

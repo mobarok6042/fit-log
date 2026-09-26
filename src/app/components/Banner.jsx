@@ -20,9 +20,9 @@ const Banner = () => {
             </h1>
             <p className="py-6">
               FitLog is a dark, no-nonsense gym companion: pick a lift, lock it
-              into today's plan, and watch the week's work add up.
+              into todays plan, and watch the weeks work add up.
             </p>
-            <Link href="/workouts">
+            <Link href="#workouts">
             <button className="btn bg-[#C2F800] text-xl font-bold text-black m-2">Browse Workouts</button>
             </Link>
           </div>

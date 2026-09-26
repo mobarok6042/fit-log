@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 import { GoClock } from "react-icons/go";
 import { FaRegStar } from "react-icons/fa";
 import { FaFire } from "react-icons/fa";
@@ -12,21 +13,22 @@ const WorkoutCard = ({ workout }) => {
     image,
     muscleGroups,
     equipment,
-    difficulty,
     duration,
     caloriesBurned,
-    sets,
-    reps,
     rating,
-    description,
-    instructions,
   } = workout;
   return (
-    <div className="card h-full w-full bg-base-100 shadow-sm">
+    <div>
+        
+        <Link
+      href={`/workouts/${id}`}
+      aria-label={`View details for ${name}`}
+      className="card h-full w-full bg-base-100 shadow-sm transition-shadow hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C2F800]"
+    >
       <figure className="aspect-video overflow-hidden">
         <Image
           src={image}
-          alt="error fetching photo"
+          alt={`${name} workout`}
           width={640}
           height={360}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -38,10 +40,9 @@ const WorkoutCard = ({ workout }) => {
           {workout.muscleGroups.map((muscle) => (
             <span
               key={muscle}
-              muscle={muscle}
               className="badge bg-[#C2F800] text-gray-800"
             >
-              {muscleGroups}
+              {muscle}
             </span>
           ))}
         </div>
@@ -62,6 +63,7 @@ const WorkoutCard = ({ workout }) => {
           </div>
         </div>
       </div>
+    </Link>
     </div>
   );
 };
