@@ -8,7 +8,7 @@ export async function generateMetadata({ params }) {
 
   try {
     const response = await fetch(
-      `https://api.abcz.workers.dev/api/fitlog/${workoutid}`,
+      `https://api.api-store.workers.dev/api/fitlog/${workoutid}`,
     );
     if (!response.ok) return { title: "Workout Details" };
 
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }) {
 const WorkoutDetailPage = async ({ params }) => {
   const { workoutid } = await params;
   const response = await fetch(
-    `https://api.abcz.workers.dev/api/fitlog/${workoutid}`,
+    `https://api.api-store.workers.dev/api/fitlog/${workoutid}`,
   );
 
   if (!response.ok) {

@@ -18,7 +18,7 @@ function LibraryHeading() {
 }
 
 async function WorkoutLibrary() {
-  const response = await fetch("https://api.abcz.workers.dev/api/fitlog");
+  const response = await fetch("https://api.api-store.workers.dev/api/fitlog");
   const workouts = await response.json();
 
   return (

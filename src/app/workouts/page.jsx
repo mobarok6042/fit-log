@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 const WorkoutsPage = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
+  const res = await fetch("https://api.api-store.workers.dev/api/fitlog");
   const workouts = await res.json();
 
   return (
