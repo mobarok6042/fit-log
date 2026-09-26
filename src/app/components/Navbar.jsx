@@ -78,7 +78,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <Link href="/">
+        <Link href="/#top">
           <div className="flex items-center gap-1 sm:gap-2">
             <Image
               src="/logo.png"

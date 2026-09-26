@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Banner = () => {
   return (
-    <div>
+    <div id="top" className="scroll-mt-20">
       <div className="hero bg-base-200 lg:py-40">
         <div className="hero-content flex-col lg:flex-row-reverse lg:gap-52">
           <Image
