@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { CiBookmark } from "react-icons/ci";
 import { SlCalender } from "react-icons/sl";
+import { toast } from "react-toastify";
 import {
   COLLECTIONS_UPDATED_EVENT,
   readWorkoutCollection,
@@ -39,7 +40,11 @@ const WorkoutActions = ({ workout }) => {
         aria-pressed={isPlanned}
         onClick={() => {
           const updated = toggleWorkoutInCollection("plan", workout);
-          setIsPlanned(updated.some((item) => String(item.id) === String(workout.id)));
+          const added = updated.some((item) => String(item.id) === String(workout.id));
+          setIsPlanned(added);
+          toast[added ? "success" : "info"](
+            added ? `Added ${workout.name} to today's plan` : `Removed ${workout.name} from today's plan`,
+          );
         }}
         className="btn bg-[#C2F800] text-black"
       >
@@ -51,7 +56,11 @@ const WorkoutActions = ({ workout }) => {
         aria-pressed={isSaved}
         onClick={() => {
           const updated = toggleWorkoutInCollection("saved", workout);
-          setIsSaved(updated.some((item) => String(item.id) === String(workout.id)));
+          const added = updated.some((item) => String(item.id) === String(workout.id));
+          setIsSaved(added);
+          toast[added ? "success" : "info"](
+            added ? `Saved ${workout.name} for later` : `Removed ${workout.name} from saved workouts`,
+          );
         }}
         className="btn"
       >

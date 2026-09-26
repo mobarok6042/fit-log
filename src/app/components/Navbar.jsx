@@ -27,7 +27,7 @@ const Navbar = () => {
   React.useEffect(() => {
     const updateCounts = () => {
       setCounts({
-        plan: readWorkoutCollection("plan").length,
+        plan: readWorkoutCollection("plan").filter((workout) => !workout.completed).length,
         saved: readWorkoutCollection("saved").length,
       });
     };
