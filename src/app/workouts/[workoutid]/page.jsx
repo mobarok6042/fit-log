@@ -51,8 +51,8 @@ const WorkoutDetailPage = async ({ params }) => {
             </span>
           ))}
         </div>
-        <div className="rounded-2xl p-5 bg-[#232834]">
-          <table className="table w-full table-fixed">
+        <div className="rounded-2xl bg-base-200 p-5 text-base-content">
+          <table className="table w-full table-fixed text-base-content">
             <tbody>
               <tr>
                 <td className="w-1/2 break-words py-3 px-4">Equipment</td>
