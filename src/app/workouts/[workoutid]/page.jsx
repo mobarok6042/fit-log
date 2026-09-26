@@ -3,6 +3,22 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import WorkoutActions from "../../components/WorkoutActions";
 
+export async function generateMetadata({ params }) {
+  const { workoutid } = await params;
+
+  try {
+    const response = await fetch(
+      `https://api.abcz.workers.dev/api/fitlog/${workoutid}`,
+    );
+    if (!response.ok) return { title: "Workout Details" };
+
+    const workout = await response.json();
+    return { title: workout.name };
+  } catch {
+    return { title: "Workout Details" };
+  }
+}
+
 const WorkoutDetailPage = async ({ params }) => {
   const { workoutid } = await params;
   const response = await fetch(

@@ -1,6 +1,10 @@
 import WorkoutCard from "./components/WorkoutCard";
 import Banner from "./components/Banner";
 
+export const metadata = {
+  title: "Home",
+};
+
 export default async function Home() {
   const response = await fetch("https://api.abcz.workers.dev/api/fitlog");
   const workouts = await response.json();

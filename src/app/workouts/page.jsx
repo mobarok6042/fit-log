@@ -1,6 +1,10 @@
 import React from "react";
 import WorkoutCard from "../components/WorkoutCard";
 
+export const metadata = {
+  title: "Workout Library",
+};
+
 const WorkoutsPage = async () => {
   const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
   const workouts = await res.json();
