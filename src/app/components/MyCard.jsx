@@ -62,7 +62,7 @@ const MyCard = ({ workout, collection, onChange }) => {
                     title="View details"
                     className="btn btn-ghost  justify-center gap-2 whitespace-nowrap"
                 >
-                    <button className="btn p-2 gap-2 text-white border-1px border-white">
+                    <button className="btn p-2 gap-2 text-white border-1px border-white rounded-3xl">
                         <FiExternalLink aria-hidden="true" size={18} />
                     <span>View details</span>
                     </button>
@@ -73,7 +73,7 @@ const MyCard = ({ workout, collection, onChange }) => {
                             aria-label="Mark as done"
                             title="Mark as done"
                             onClick={markCompleted}
-                            className="btn  btn-sm min-w-34 justify-center gap-2 p-2 bg-[#C2F800] text-black"
+                            className="btn  btn-sm min-w-34 justify-center gap-2 p-2 bg-[#C2F800] text-black rounded-3xl"
                     >
                         <FiCheck aria-hidden="true" size={18} />
                         <span>Mark as done</span>
