@@ -60,9 +60,12 @@ const MyCard = ({ workout, collection, onChange }) => {
                     href={`/workouts/${workout.id}`}
                     aria-label={`View details for ${workout.name}`}
                     title="View details"
-                    className="btn btn-ghost btn-sm btn-square"
+                    className="btn btn-ghost  justify-center gap-2 whitespace-nowrap"
                 >
-                    <FiExternalLink aria-hidden="true" size={18} />
+                    <button className="btn p-2 gap-2 text-white border-1px border-white">
+                        <FiExternalLink aria-hidden="true" size={18} />
+                    <span>View details</span>
+                    </button>
                 </Link>
                 {isPlan && (
                     <button
@@ -70,9 +73,10 @@ const MyCard = ({ workout, collection, onChange }) => {
                             aria-label="Mark as done"
                             title="Mark as done"
                             onClick={markCompleted}
-                            className="btn btn-ghost btn-sm btn-square"
+                            className="btn  btn-sm min-w-34 justify-center gap-2 p-2 bg-[#C2F800] text-black"
                     >
                         <FiCheck aria-hidden="true" size={18} />
+                        <span>Mark as done</span>
                     </button>
                 )}
                 <button
